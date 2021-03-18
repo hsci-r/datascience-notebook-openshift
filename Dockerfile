@@ -2,7 +2,9 @@ FROM jupyter/datascience-notebook
 
 USER root
 
-RUN chgrp -R 0 /home/jovyan /opt/conda && chmod -R g=u /home/jovyan /opt/conda
+ENV NB_GID=0 
 
-USER 1000
+RUN fix-permissions /home/jovyan /opt/conda
+
+USER 65536
 
